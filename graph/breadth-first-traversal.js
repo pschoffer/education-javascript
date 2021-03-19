@@ -2,53 +2,53 @@
 // Iterative approach
 function breadthFirstTraversal(graph, root) {
     
-    // QUEUE - FIFO - BFT
-    //      [  ]  a
-    //      [ a  ] b   
-    //   <- [ a b ] 
-    // a <- [ b  ]  
-
-    // STACK - LIFO
-    // [   ] a
-    // [ a  ] b
-    // [ a b  ] ->
-    // [ a  ] b
-
     let queue = [];
 
     queue.push(root);
-    // queue = [ a ]
 
     const nodes = [];
 
     while ( queue.length ) {
+
         const currentNode = queue.shift();
-        // ACTION 
+        // ACTION
         nodes.push(currentNode);
-        /*
-        when I say explode, I mean just the part that generates kids for parent not 
-        processing them yet (which explore implies also procesing a bit to me).  
-        */
-        // EXPLODE (Children)
+        // EXPLODE
         const children = graph[currentNode];
+        // STACK children at the back of the queue
         queue = queue.concat(children);
-
+        // Print out test cases - verify answers 
         console.log("My Test", currentNode, '=>', children, "QUEUE", queue);
-
-    }
-
+    } 
     return nodes;
 }
 
 
 // RECURSIVE approach
-/* function breadthFirstTraversalRecursive(graph, currentNode, queue = []) {
-    return [];
-} */
+function breadthFirstTraversalRecursive(graph, currentNode, queue = []) {
+    // ACTION 
+    const nodes = [currentNode];
+    // EXPLODE
+    const children = graph[currentNode];
+    // STACK children at the back of the queue;
+    const newQueue = queue.concat(children);
+    // if newQueue is empty
+    if (!newQueue.length) {
+    // return nodes
+        return nodes;
+    } else {
+        // get new currentNode
+        const newCurrentNode = newQueue.shift();
+        // get remaining nodes
+        const restOfNodes = breadthFirstTraversalRecursive(graph, newCurrentNode, newQueue);
+        // return nodes with restOfNodes
+        return nodes.concat(restOfNodes);
+    }
+    
+} 
 
-
-// EXPORT CHANGES 
+// EXPORT 
 module.exports = {
     breadthFirstTraversal,
-  //  breadthFirstTraversalRecursive
+    breadthFirstTraversalRecursive
 }
