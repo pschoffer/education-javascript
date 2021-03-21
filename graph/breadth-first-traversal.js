@@ -17,8 +17,6 @@ function breadthFirstTraversal(graph, root) {
         const children = graph[currentNode];
         // STACK children at the back of the queue
         queue = queue.concat(children);
-        // Print out test cases - verify answers 
-        console.log("My Test", currentNode, '=>', children, "QUEUE", queue);
     } 
     return nodes;
 }
@@ -51,4 +49,4 @@ function breadthFirstTraversalRecursive(graph, currentNode, queue = []) {
 module.exports = {
     breadthFirstTraversal,
     breadthFirstTraversalRecursive
-}
+} 
