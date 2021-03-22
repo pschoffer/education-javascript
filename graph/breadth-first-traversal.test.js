@@ -1,44 +1,26 @@
-
-//     a
-//    / \
-//   b   c
-//  / \
-// d   e
-
-// a: [b,c],
-// b: [d,e],
-// c: [],
-// d: [],
-// e: [],
-
-
-// DFT: a - b - d - e - c
-// BFT: a - b - c - d - e
-
-
-
+// breadthFirstTraversal
 const { breadthFirstTraversal, breadthFirstTraversalRecursive } = require('./breadth-first-traversal')
 
 test('BFT',
-    () => {
+    () => { 
         const graph = {
             a: ['b', 'c'],
             b: ['d', 'e'],
             c: [],
-            d: [],
+            d: [],  
             e: [],
         }
 
         const nodes = breadthFirstTraversal(graph, 'a');
 
-
         const expectedNodes = ['a', 'b', 'c', 'd', 'e'];
 
+        // less strict than toBe();
         expect(nodes).toStrictEqual(expectedNodes);
     }
 );
 
-
+//breadthFirstTraversalRecursive
 test('BFT recursive',
     () => {
         const graph = {
@@ -50,10 +32,9 @@ test('BFT recursive',
         }
 
         const nodes = breadthFirstTraversalRecursive(graph, 'a');
-
-
+    
         const expectedNodes = ['a', 'b', 'c', 'd', 'e'];
 
         expect(nodes).toStrictEqual(expectedNodes);
     }
-);
+);  
